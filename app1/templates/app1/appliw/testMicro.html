@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Client</title>
+    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <script type="text/javascript">
+        /*        var recognition = new webkitSpeechRecognition();
+         recognition.lang = "fr-FR";
+         recognition.continuous = false;
+         recognition.interimResults = false;
+         recognition.onresult = function(event) {
+         console.log(event)*/
+        //            var interim_transcript = '';
+        //
+        //            for (var i = event.resultIndex; i < event.results.length; ++i) {
+        //                if (event.results[i].isFinal) {
+        //                    final_transcript += event.results[i][0].transcript;
+        //                } else {
+        //                    interim_transcript += event.results[i][0].transcript;
+        //                }
+        //            }
+        //            document.getElementById("term").value = final_transcript;
+        //       }
+
+        $(document).ready(function() {
+
+            var recognition = new webkitSpeechRecognition();
+            recognition.lang = "fr-FR";
+            recognition.continuous = false;
+            recognition.interimResults = false;
+
+            $('#hit').click(function () {
+                recognition.start();
+            });
+
+            recognition.onresult = function (event) {
+                var result = $('#result');
+                var transcript;
+                result.text('');
+
+                for (var i = 0; i < event.results.length; i++) {
+                    var speechrecognitionResult = event.results[i];
+                    transcript = speechrecognitionResult[0].transcript;
+                    if (event.results[i].isFinal) {
+                        result.text(transcript);
+                        recognition.stop();
+                    } else {
+                        result.text($('#result').text() + transcript);
+                    }
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+
+<div id="search">
+    <input id="term" type="text" value="enter your search" />
+    <button id="hit" type="button" name="button" class="btn btn-primary">Search</button>
+    <h2 id="result">Resultat ici</h2>
+</div>
+
+</body>
+</html>

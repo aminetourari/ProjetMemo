@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+</head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<body>
+
+<div class="dropdown keep-open">
+    <!-- Dropdown Button -->
+    <button id="dLabel" role="button" href="#" class="btn btn-primary"
+            data-toggle="dropdown" data-target="#" >
+        Dropdown <span class="caret"></span>
+    </button>
+
+    <!-- Dropdown Menu -->
+    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+        <li id="item1"> <img  src="resources/imagesRoby/elementsGraphiques/roby_0016_icone-home.png"/> <span>Accueil</span></li>
+        <li id="item2"> <img  src="resources/imagesRoby/elementsGraphiques/roby_0015_icone-connect.png"/> Déconnexion</li>
+        <li id="item3"> <img  src="resources/imagesRoby/elementsGraphiques/roby_0014_icone-coeur.png"/> Reconnaître un objet</li>
+        <li id="item4"> <img  src="resources/imagesRoby/elementsGraphiques/roby_0013_icone-id.png"/> Apprendre un objet</li>
+        <li id="item5"> <img  src="resources/imagesRoby/elementsGraphiques/roby_0012_icone-cloud.png"/> Tous mes objets</li>
+    </ul>
+</div>
+
+<script>
+
+    $('.dropdown.keep-open').on({
+        "shown.bs.dropdown": function() { this.closable = false; },
+        "click":             function() { this.closable = true; },
+        "hide.bs.dropdown":  function() { return this.closable; }
+    });
+
+    $('.dropdown').on('show.bs.dropdown', function(e){
+        console.log("show.bs.dropdown");
+        $(this).find('.dropdown-menu').stop().slideDown ('linear');
+    });
+
+    // ADD SLIDEUP ANIMATION TO DROPDOWN //
+    $('.dropdown').on('hide.bs.dropdown', function(e){
+        if (this.closable) {
+            console.log("hide.bs.dropdown");
+            $(this).find('.dropdown-menu').stop().slideUp('linear');
+        }
+    });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <title>Bonjour</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <!--<link rel="stylesheet" href="/resources/demos/style.css">-->
+    <link rel="stylesheet" href="styles/indexStyle.css">
+</head>
+<body>
+<div id="includedContentMenu"></div>
+<div class="container" id="container">
+    <div class="row text-center message">
+        Message principal
+    </div>
+    <div class="row text-center" style="padding-top:100px">
+        <div class="col-lg-4 message" id="btnGaucheDiv">
+            partie gauche
+        </div>
+
+        <div id="zoneRobot" class="col-lg-4">
+            zone centrale
+        </div>
+
+        <div class="col-lg-4 message" id="btnDroiteDiv">
+            partie droite
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    $(function(){
+        $('div').addClass('showBordure').css('background-color', 'blanchedalmond');
+    })
+</script>
+</html>

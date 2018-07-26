@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Bonjour</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <!--<link rel="stylesheet" href="/resources/demos/style.css">-->
+    <link rel="stylesheet" href="static/app1/styles/indexStyle.css">
+
+    <!--Bibliothèques du carousel-->
+    <link rel="stylesheet" href="static/app1/styles/owl.carousel.css">
+    <script src="static/app1/scripts/owl.carousel.js"></script>
+    <!-- ---------------------- -->
+
+    <!-- Bibliothèque Nested (grille) -->
+    <script src="static/app1/Nested-master/jquery.nested.js"></script>
+    <script src="static/app1/Nested-master/makeboxes.js"></script>
+    <!-- ------------------------------>
+
+</head>
+
+<body>
+{% include 'app1/appliw/menu.html' %}
+
+<div id="includedContentMenu"></div>
+<div class="container" id="container">
+    <!--<div class="row text-center">-->
+        <!--<div id="helloValty" class="invisible col-lg-12">-->
+            <!--<div class="message">Hello !</div>-->
+            <!--<div class="message">Je suis Valty</div>-->
+        <!--</div>-->
+        <!--&lt;!&ndash;<div class="row" style="padding-top:100px">&ndash;&gt;-->
+            <!--&lt;!&ndash;<div id="message" class="col-lg-12 text-center message">Que puis-je faire pour toi <span class="blanc">XXX</span> ?</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--</div>-->
+    <div id="message" class="row text-center">
+        <div id="helloValty" class="invisible col-lg-12">
+        <div class="message">Hello !</div>
+        <div class="message">Je suis Memo</div>
+        </div>
+    </div>
+    <div class="row text-center" id="secondeLigne">
+        <div class="col-lg-4 message" id="btnGaucheDiv">
+        </div>
+
+        <div id="zoneRobot" class="col-lg-4">
+            <div id="imageRobott" >
+                <img id="robyCorps" class="petit" src="static/app1/resources/imagesRoby/morceauxDeRoby/roby_0035_robot.png" alt="roby"/>
+                <img id="robyOeilGauche" class="petit" src="static/app1/resources/imagesRoby/morceauxDeRoby/roby_0033_oeil-gauche.png" alt="roby"/>
+                <img id="robyOeilDroit" class="petit" src="static/app1/resources/imagesRoby/morceauxDeRoby/roby_0034_oeil2-droit.png" alt="roby"/>
+                <div id="iris">
+                    <img id="robyIrisGauche" class="petit" src="static/app1/resources/imagesRoby/morceauxDeRoby/roby_0032_pupille1-gauche.png" alt="roby"/>
+                    <img id="robyIrisDroit" class="petit" src="static/app1/resources/imagesRoby/morceauxDeRoby/roby_0031_pupille-droite.png" alt="roby"/>
+                </div>
+                <img id="robyBouche" class="petit" src="static/app1/resources/imagesRoby/morceauxDeRoby/roby_0029_sourire1.png" alt="roby"/>
+            </div>
+
+            <div id="ombreRobot" style="position: relative">
+                <img id="ombre" class="petit" src="static/app1/resources/imagesRoby/morceauxDeRoby/roby_0030_ombre.png" alt="ombre"/>
+            </div>
+        </div>
+
+        <div class="col-lg-4 message" id="btnDroiteDiv">
+        </div>
+    </div>
+</div>
+
+<!--<div id="container" class="container">-->
+    <!--<div class="row text-center">-->
+        <!--<div id="helloValty" class="invisible col-lg-12">-->
+            <!--<div class="message">Hello !</div>-->
+            <!--<div class="message">Je suis Valty</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div id="zoneRobot">-->
+        <!--<div class="row text-center">-->
+            <!--<div id="imageRobott" class="col-lg-2 col-lg-offset-5">-->
+                <!--<img id="robyCorps" class="petit" src="resources/imagesRoby/morceauxDeRoby/roby_0035_robot.png" alt="roby"/>-->
+                <!--<img id="robyOeilGauche" class="petit" src="resources/imagesRoby/morceauxDeRoby/roby_0033_oeil-gauche.png" alt="roby"/>-->
+                <!--<img id="robyOeilDroit" class="petit" src="resources/imagesRoby/morceauxDeRoby/roby_0034_oeil2-droit.png" alt="roby"/>-->
+                <!--<div id="iris">-->
+                    <!--<img id="robyIrisGauche" class="petit" src="resources/imagesRoby/morceauxDeRoby/roby_0032_pupille1-gauche.png" alt="roby"/>-->
+                    <!--<img id="robyIrisDroit" class="petit" src="resources/imagesRoby/morceauxDeRoby/roby_0031_pupille-droite.png" alt="roby"/>-->
+                <!--</div>-->
+                <!--<img id="robyBouche" class="petit" src="resources/imagesRoby/morceauxDeRoby/roby_0029_sourire1.png" alt="roby"/>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="row text-center">-->
+            <!--<div id="ombreRobot" class="col-lg-2 col-lg-offset-5">-->
+                <!--<img class="petit" id="ombre" src="resources/imagesRoby/morceauxDeRoby/roby_0030_ombre.png" alt="ombre"/>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+</div>
+<audio preload="auto" id="sifflement">
+    <source src="static/app1/sifflement.mp3" type="audio/mp3">
+</audio>
+
+<script src="static/app1/scripts/levitationRobot.js"></script>
+<script src="static/app1/scripts/affichageChampsConnexion2.js"></script>
+<script src="static/app1/scripts/carousel.js"></script>
+
+<!-- -->
+
+<script>
+    var aleatoire = (Math.random()* 10000)+2000;
+    var aleatoireSiffle = (Math.random()* 3000)+10000;
+    setTimeout(function () {
+        cligner();
+    }, aleatoire);
+
+
+    function cligner(){
+        fermerPuisOuvrirLesYeux();
+        aleatoire = Math.random()* 10000;
+        setTimeout(function () {
+            cligner();
+        }, aleatoire);
+    }
+
+    function fermerPuisOuvrirLesYeux(){
+        var paupieresHautesFermes = "<img id='paupieresHautesFermees' class='normal' src='static/app1/resources/imagesRoby/morceauxDeRoby/roby_0022_paupiere-hautes.png' alt='roby'>";
+        var paupieresBassesFermes = "<img id='paupieresBassesFermees' class='normal' src='static/app1/resources/imagesRoby/morceauxDeRoby/roby_0021_paupiere-basses.png' alt='roby'>";
+        $('#imageRobott').append(paupieresHautesFermes);
+
+        setTimeout(function(){
+            $('#imageRobott').append(paupieresBassesFermes);
+        }, 120);
+
+        setTimeout(function() {
+            $('#paupieresBassesFermees').remove();
+            $('#paupieresHautesFermees').remove();
+        }, 300);
+    }
+
+    setTimeout(function () {
+        siffler();
+    }, aleatoireSiffle);
+
+    function siffler(){
+        //mouvementBouche();
+        aleatoireSiffle = (Math.random()* 30000)+10000;
+        setTimeout(function () {
+            siffler();
+        }, aleatoireSiffle);
+    }
+
+    function mouvementBouche(){
+        $('#sifflement')[0].play();
+        setTimeout(function() {
+            $('#robyBouche').attr("src", 'static/app1/resources/imagesRoby/morceauxDeRoby/roby_0020_bouche-wait.png');
+            $('#imageRobott').append("<div id='note' style='position:absolute;z-index:99999999;color: rgb(0, 0, 0);'>♪</div>");
+
+            var posenfant = $('#note').offset();
+            posenfant.top += 150;
+            posenfant.left += 250;
+            $('#note').offset(posenfant);
+
+            $('#note').fadeOut(1000, function(){
+                $('#note').remove();
+            })
+
+            setTimeout(function() {
+                if(!dodo)
+                    $('#robyBouche').attr("src", 'static/app1/resources/imagesRoby/morceauxDeRoby/roby_0029_sourire1.png');
+
+            }, 2000);
+
+        }, 1000);
+
+    }
+
+</script>
+<!--<script src="scripts/transitions.js"></script>-->
+<script>
+
+    var newtitle = $('title').text();
+    $('title').change(function(){
+        var newtitle = $('title').text();
+        if (newtitle == "Tous mes objets" || newtitle == "Bonjour"){
+            //$('#partieCentraleBandeau').addClass('invisible');
+            $('#partieCentraleBandeau').css("visibility", 'hidden');
+        } else {
+            $('#partieCentraleBandeau').css("visibility", 'visible');
+        }
+    });
+
+</script>
+
+<script type="text/javascript">
+    var webSocket;
+    var etat = "zero";
+    var canvas;
+    var video;
+    var width = 320;
+    var height = 0;
+    var msg;
+    var lastKeyword;
+    var objetsConnus;
+
+    if(!window.WebSocket) {
+        alert('Votre navigateur ne supporte pas les webSocket! \n Ca va beaucoup moins bien marcher...');
+    }
+
+    function connect() {
+        webSocket = new WebSocket("ws://localhost:8025/websockets/");
+        webSocket.onmessage = onMessage;
+        webSocket.onclose = onClose;
+
+    }
+
+    function onClose(){
+        console.log("Fin de connexion. \n Ca va être tout noir...");
+    }
+
+    // Le serveur envoie des données, on les traite ici
+    function onMessage(evt) {
+        var change = true;
+        var nouvelleImage;
+        var chaine;
+        chaine = evt.data.split('/');
+
+        switch (chaine[0]){ //event from server
+            case "apprentissage_terminé" : // fin traitement de récupérétion des images sur google
+                    reveiller();
+                nouvelleImage = "static/app1/resources/imagesRoby/robySmile.png";
+                etat = "camera";
+                msg.text = "Voilà, j'ai terminé ! ";
+                window.speechSynthesis.speak(msg);
+                break;
+            case "pas_compris" :
+                reveiller();
+                nouvelleImage = "static/app1/resources/imagesRoby/robyBlase.png";
+                msg.text = "Désolé, je n'ai pas compris...";
+                window.speechSynthesis.speak(msg);
+                break;
+            case "erreur" :
+                reveiller();
+                nouvelleImage = "static/app1/resources/imagesRoby/robyPerplexe.png";
+                msg.text = "Mince, une erreur est survenue.";
+                window.speechSynthesis.speak(msg);
+                break;
+            case "image_reconnue" :
+                reveiller();
+                nouvelleImage = "static/app1/resources/imagesRoby/robySmile.png";
+                msg.text = "Oui, je reconnais ça !"+(chaine[1].split('% :'))[1]
+                window.speechSynthesis.speak(msg);
+
+                break;
+            case "image_non_reconnue" :
+                reveiller();
+                nouvelleImage = "static/app1/resources/imagesRoby/robyPerplexe.png";
+                msg.text = "Je n'ai pas reconnu cet objet.";
+                window.speechSynthesis.speak(msg);
+                break;
+            default : // liste des objets connus de l'utilisateur connecté
+                    if (evt.data.indexOf("http") == 0){
+                        afficherNouvelleImage(evt.data);
+                        console.log("http")
+                    }else{
+                        objetsConnus = evt.data;
+                        console.log("ici objetxs")
+                        objetsConnus = objetsConnus.replace('[',"");
+                        objetsConnus = objetsConnus.replace(']', "");
+                        objetsConnus = objetsConnus.replace(/"/g, '');
+                        //if (objetsConnus.indexOf(",") > -1)//  = objetsConnus.contains("'");
+                        objetsConnus = objetsConnus.split(',');
+                        //alert(objetsConnus.length);
+                    }
+                change = false;
+                break;
+        }
+
+        /*if (change){
+            document.getElementById("roby").src = nouvelleImage;
+        }*/
+        console.log(evt.data);
+
+    }
+
+
+
+
+
+    function startSpeechSynthesis(){
+        msg = new SpeechSynthesisUtterance();//('Hello World');
+
+        var voices = window.speechSynthesis.getVoices();
+        msg.voice = voices[2]; // Note: some voices don't support altering params
+        msg.voiceURI = 'native';
+        msg.volume = 1; // 0 to 1
+        msg.rate = 1; // 0.1 to 10
+        msg.pitch = 2; //0 to 2
+        msg.text = "Salut";
+        msg.lang = 'fr-FR';
+
+        window.speechSynthesis.speak(msg);
+
+
+    }
+
+    $(document).ready(function() {
+        // Connect websocket
+        window.addEventListener("load", connect(), false);
+
+        // Apparition de l'image du robot, initialisation de la webcam et de la reconnaissance vocale
+        startSpeechSynthesis();
+
+    });
+
+
+</script>
+
+</body>
+</html>

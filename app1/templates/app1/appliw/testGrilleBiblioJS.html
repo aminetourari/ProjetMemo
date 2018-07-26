@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Nested</title>
+    <link href="Nested-master/style.css" rel="stylesheet" type="text/css" media="screen" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="Nested-master/js/jquery-1.7.1.min.js"></script>
+    <script src="Nested-master/jquery.nested.js"></script>
+    <script src="Nested-master/makeboxes.js"></script>
+
+</head>
+<body>
+
+<a class="btn" id="prepend">Prepend</a>
+
+<div id="blocImages">
+
+</div>
+
+<a class="btn" id="append">Append</a>
+
+<script type="text/javascript" >
+
+    $(function() {
+
+        $('#blocImages').append('<div class="box size11" style="visibility: hidden;display: none;">1</div>');
+        $('#blocImages').nested();
+
+        $('#prepend').click(function(){
+            var boxes = makeBoxes("http://www.cheloniophilie.com/logo-tortue.jpeg");
+            $('#blocImages').prepend(boxes).nested('prepend',boxes);
+        })
+        $('#append').click(function(){
+            var boxes = makeBoxes("http://vroum52.com/chats.img/Chat%20tigre%20du%20bengal,%20espece%20dangereuse%20gros%20mangeur.jpg");
+            $('#blocImages').append(boxes).nested('append',boxes);
+        })
+
+    });
+
+
+</script>
+
+</body>
+</html>

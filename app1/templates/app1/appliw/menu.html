@@ -1,0 +1,158 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" href=" {%static 'app1/styles/menuStyle.css' %}">
+<header class="row bandeau">
+    <div id="menu" class="col-lg-6">
+        <div id="dropdown" class="dropdown keepopen">
+            <button class="dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+                <img id="boutonMenu" class="bandeau" src=" {%static 'app1/resources/imagesRoby/boutonMenu.png' %}"/>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                <li id="item1"> <img  src=" {%static 'app1/resources/imagesRoby/elementsGraphiques/roby_0016_icone-home.png' %}"/> Accueil</li>
+                <li id="item2"> <img  src=" {%static 'app1/resources/imagesRoby/elementsGraphiques/roby_0015_icone-connect.png' %}"/> Déconnexion</li>
+                <li id="item3"> <img  src=" {%static 'app1/resources/imagesRoby/elementsGraphiques/roby_0014_icone-coeur.png' %}"/> Reconnaître un objet</li>
+                <li id="item4"> <img  src=" {%static 'app1/resources/imagesRoby/elementsGraphiques/roby_0013_icone-id.png' %}"/> Apprendre un objet</li>
+                <li id="item5"> <img  src=" {%static 'app1/resources/imagesRoby/elementsGraphiques/roby_0012_icone-cloud.png' %}"/> Tous mes objets</li>
+            </ul>
+        </div>
+    </div>
+    <div id="partieCentraleBandeau" class="col-lg-2">
+        <span class="text-center"> <img src=" {%static 'app1/resources/imagesRoby/elementsGraphiques/roby_0002_cloud-big.png' %}"/> Mes objets </span>
+    </div>
+    <div class="col-lg-4">
+        <img id="logogfi" class="bandeau coinDroit" src=" {%static 'app1/resources/imagesRoby/gfi22.jpg' %}" />
+    </div>
+
+</header>
+<div id="hautDuBody"></div>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
+<!--<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>-->
+<script src=" {%static 'app1/scripts/gestionDeploiementMenu2.js' %}"></script>
+        <script src=" {%static 'app1/scripts/carousel.js' %}"></script>
+<script>
+    $(document).ready(function() {
+
+        $.getScript('static/app1/scripts/transitions.js', function(){
+            ecouteurMenu();
+        });
+
+        var title = $('title').text();
+        if (title == "Tous mes objets" || title == "Bonjour"){
+            //$('#partieCentraleBandeau').addClass('invisible');
+            $('#partieCentraleBandeau').css("visibility", 'hidden');
+        }
+
+        /**
+         * Au click sur le bouton "Tous mes objets"
+         * Disparition et suppression de tous les éléments
+         * Changement du background si besoin (le demi cercle en bas...)
+         */
+
+        function masquerEtSupprimer(){
+            $("#container>*").fadeTo(2000, 0, function(){
+                $(this).remove();
+                animation = false;
+            });
+        }
+
+        $('#partieCentraleBandeau, #item5').on("click", function(){
+            //arreterMouvementDesYeux();
+            //Masquer le bouton "tous mes objet" du bandeau
+            //$('#partieCentraleBandeau').css("visibility", 'hidden');
+            //Supprimer l'arc du bas
+            $('body').css('background-image', 'none');
+            //Supprimer l'arc du haut
+            $('#container').removeClass('containerSombre', 2000);
+
+            masquerEtSupprimer();
+            $('#container').append("<div id='message'></div>");
+            $('#container').append("<div id='carousel' style='opacity: 0;'></div>");
+            $('#container').append("<div id='blocPetitsBoutons'></div>");
+            $('body').prepend("<div id='robyCoin'></div>");
+            setTimeout(function(){
+                //Masquer, charger et afficher le message
+                $('#message').fadeOut(function(){
+                    /*$('#message').load("tousMesObjets/message.html", function(){
+                        var mesContent = $('#message').text();
+                        mesContent = mesContent.replace('XXX', username);
+                        $('#message').html(mesContent);
+                        $('#message').fadeTo(4000, 1);
+                    })*/
+
+                    $.get("static/app1/tousMesObjets/message.html", function(data) {
+                        data = data.replace('XXX', username);
+                        var nbObjets = objetsConnus.length;
+                        if (objetsConnus==""){
+                            nbObjets=0;
+                        }
+                        data = data.replace('YY', nbObjets);
+                        //alert(data);
+                        $("#message").replaceWith(data);
+                        $('#message').fadeTo(4000, 1);
+                    });
+                });
+
+                // Masquer, charger et afficher le carousel
+                // Utiliser les fonctions fade ne marche pas: le carousel apparaît tout écrasé
+                // Pour contourner ça : fonction animate sur l'opacité
+                //$('#carousel').fadeOut(function(){
+                    $('#carousel').load("static/app1/tousMesObjets/carousel.html", function(){
+
+                        construireCarousel();
+
+                        $('#carousel').animate({
+                            opacity:  '1'
+                        }, 3000);
+                        //$('#carousel').fadeTo(4000, 1);
+                    });
+                //});
+
+
+                // Masquer, charger et afficher les petits boutons
+                $('#blocPetitsBoutons').fadeOut(function(){
+                    $('#blocPetitsBoutons').load("static/app1/tousMesObjets/blocPetitsBoutons.html", function(){
+                        $('#blocPetitsBoutons').fadeTo(4000, 1, function(){
+                            $("#btnGaucheDiv>div>div>img").click(function() {
+                                masquerEtSupprimerContainer(2000, reconstruireGrilleDroite, deplacerGrilleDroite);
+                                $("#robyCoin").fadeTo(1000, 0, function(){
+                                    $(this).remove();
+                                });
+
+                                $('title').text("Reconnaître un objet");
+                                $('title').change();
+                            });
+                            $("#btnDroiteDiv>div>div>img").click(function() {
+                                masquerEtSupprimerContainer(2000, reconstruireGrilleGauche, deplacerGrilleGauche);
+                                $("#robyCoin").fadeTo(1000, 0, function(){
+                                    $(this).remove();
+                                });
+
+                                $('title').text("Apprendre un objet");
+                                $('title').change();
+                            });
+                        });
+                    })
+                });
+
+                //Masquer, charger et afficher le robot
+                $('#robyCoin').fadeOut(function(){
+                    $('#robyCoin').load("static/app1/tousMesObjets/robyCoinBasGauche.html", function(){
+                        $('#robyCoin').fadeTo(4000, 1);
+                        $('#robyCoinBasGauche').animate({
+                            left: 0,
+                            bottom: 0
+                        }, 4000);
+                    })
+                });
+
+            }, 3000);
+
+            $('title').text("Tous mes objets");
+            $('title').change();
+
+                //$('#container').append("tousMesObjets/message.html");
+                //$('#container').load("tousMesObjets/carousel.html", function(){afficherCarousel();});
+
+        });
+    });
+</script>

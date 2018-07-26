@@ -1,0 +1,319 @@
+.petit {
+    height: 10%;
+    width: 10%;
+    /*position:absolute*/;
+}
+.normal { /*position:absolute*/ }
+
+.bandeau, .item{
+    margin: 0px;
+    padding: 0px;
+    /*height: 100%;*/
+    font-family: Nilland;
+    color: white;
+}
+
+#partieCentraleBandeau{
+    /*visibility: hidden;*/
+    /*border-color: red;
+    border-width: 3px;
+    border-style: solid;*/
+    line-height: 87px;
+    text-align: center;
+}
+
+.coinDroit{
+    float: right;
+}
+
+.invisible{
+    opacity: 0;
+    /*visibility:hidden;*/
+}
+
+.blanc{
+    color: white;
+}
+
+body
+{
+    background-color: #DDE0E6; /*gris pâle*/
+    background-image:url("../resources/imagesRoby/elementsGraphiques/roby_0002_fond-demi-cercle-blanc-intro.png");
+    background-repeat:no-repeat;
+    background-position: center;
+    background-position: bottom;
+    background-attachment:fixed;
+    font-family: "Noteworthy Light" ; /*police utilisée*/
+    font-size : 20pt;
+    color: #00bdfa; /* couleur de police bleu*/
+}
+
+.message{
+    font-size : 36pt;
+}
+
+.fondSombre{
+    /*background: url(../resources/imagesRoby/elementsGraphiques/roby_0000_fond-arc-bas.png) no-repeat center bottom fixed
+            , url(../resources/imagesRoby/elementsGraphiques/roby_0001_fond-arc-haut.png) no-repeat center top fixed;
+    */
+    background-color: #425663;
+    background-image: url(../resources/imagesRoby/elementsGraphiques/roby_0000_fond-arc-bas.png);
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-attachment:fixed;
+}
+
+.containerSombre{
+    background-image: url(../resources/imagesRoby/elementsGraphiques/roby_0001_fond-arc-haut.png);
+    background-position: top;
+    background-repeat: no-repeat;
+    background-attachment:local;
+}
+
+header
+{
+    background-color: #363636; /* genre de gris/noir*/
+    attachment:fixed;
+    height: 100%;
+    margin: 0px;
+}
+
+.btnInitGauche
+{
+    left: 391px;
+    top: 100px;
+}
+
+.btnInitDroite
+{
+    left: -391px;
+    top: 100px;
+}
+
+
+
+/*.btnDiv div
+{
+    display: none;
+}*/
+
+.btnDiv img:hover, #btnMicro:hover
+ {
+     width: 50%;
+     height: 50%;
+ }
+
+.btnDivPetit img:hover{
+    width: 60%;
+    height: 60%;
+}
+
+.btnDivPetit{
+    font-size: 12pt;
+    text-align: left;
+    padding-left: 5px;
+    display: -webkit-box;
+}
+
+.floatimg{
+    float: right;
+    padding-right: 5px;
+}
+
+.btnDivPetit img{
+    width: 50%;
+    height: 50%;
+}
+
+.right{
+    float: right;
+}
+
+.left{
+    float: left;
+}
+
+img.right{
+    padding-right: 10px;
+}
+
+#blocPetitsBoutons{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 5%;
+}
+
+#imageRobott img, #ombreRobot img{
+    position: absolute;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+#imageRobott, #ombreRobot {
+    position: relative;
+}
+
+/*#robyOeilGauche, #robyOeilDroit, #robyIrisGauche, #robyIrisDroit, #robyBouche{
+    position: absolute;
+    left:0;
+    right:0;
+    margin-left:auto;
+    margin-right:auto;
+}*/
+
+#bordRobot, .showBordure{
+    border-color: red;
+    border-width: 3px;
+    border-style: solid;
+}
+
+#startbutton{
+    background-image: url('../resources/imagesRoby/elementsGraphiques/roby_0011_bout-bulle-connect.png');
+    background-repeat: no-repeat;
+    background-size: 87% 100%;
+    display:block;
+    color: white;
+    padding: 20px;
+    background-color: transparent;
+    border: 0px;
+    font-size: 20pt;
+    font-family: Nilland;
+    vertical-align: top;
+    background-position: 50% 40%;
+    height: 100%;
+}
+
+input{
+    font-family: Nilland;
+    font-size: 20pt;
+    text-align: center;
+    color: black;
+}
+
+#nouveauCompte{
+    font-size: 20pt;
+    text-align: center;
+}
+
+#btnNouveauCompte{
+    background-color: transparent;
+    border: 0px;
+}
+
+
+/*.row{
+    display: table;
+}
+
+[class*="col-"]{
+    float: none;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+#btnMicro{
+    height: 366px;
+}*/
+
+.centrerVerticalement{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.image {
+    position: relative;
+}
+
+.textSurImage {
+    position: absolute;
+    top: 66%;
+    left: 0;
+    width: 100%;
+    font-family: Nilland;
+    font-size: 18pt;
+    text-align: center;
+}
+
+#canvas{
+    display: none;
+}
+
+#btnPhoto, .textSurVideo, .textSurImage{
+    display: none;
+}
+
+#cercleBlanc {
+    border: 3px solid #333333;
+    border-color: white;
+    z-index: 35;
+    width: 50px;
+    height: 50px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+
+    /* Calculé dynamiquement pour centrer le cercle au milieu de la vidéo
+    /*left: 267px;
+    top: 127px;*/
+}
+
+#btnPhoto{
+    background-image: url('../resources/imagesRoby/elementsGraphiques/roby_0004_bout-ok.png');
+    background-repeat: no-repeat;
+    background-size: 390px 100%;
+    color: white;
+    padding: 20px;
+    background-color: transparent;
+    border: 0px;
+    font-size: 20pt;
+    font-family: Nilland;
+    vertical-align: top;
+    background-position: 50% 40%;
+    height: 100%;
+}
+
+#robyCoinBasGauche{
+    position: absolute;
+    left: -200px;
+    bottom: -200px;
+}
+
+#robyCoinBasGauche img{
+    height: 150%;
+    width: 150%;
+}
+
+#zoneRobot{
+    height: 370px;
+}
+
+#secondeLigne{
+    /*padding-top: 50px;*/
+}
+
+#zoneRobot{
+    z-index: 2;
+}
+
+
+/*#btnGaucheDiv{
+    border-color: pink;
+    border-width: 3px;
+    border-style: solid;
+}
+
+#zoneRobot{
+    border-color: orange;
+    border-width: 3px;
+    border-style: solid;
+}
+
+#btnDroiteDiv{
+    border-color: blue;
+    border-width: 3px;
+    border-style: solid;
+}*/

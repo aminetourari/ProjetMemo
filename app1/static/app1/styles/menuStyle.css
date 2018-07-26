@@ -1,0 +1,26 @@
+.dropdown-toggle{
+    margin:0px;
+    padding: 0px;
+    border: 0px;
+}
+
+.dropdown-menu{
+    margin:0px;
+    padding: 0px;
+    border: 2px;
+    /*webkit-box-shadow: none;*/
+    box-shadow: none;
+    font-family: Nilland;
+    color: black;
+    font-size: 12pt;
+    background-color: transparent;
+}
+
+#dropdown li{
+    padding: 10px;
+    background-color: #DDE0E6; /*gris pâle*/
+}
+
+#dropdown li img {
+    padding: 10px;
+}

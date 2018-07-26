@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Tous mes objets</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="styles/indexStyle.css">
+
+    <!--Bibliothèques du carousel-->
+    <link rel="stylesheet" href="styles/owl.carousel.css">
+    <script src="scripts/owl.carousel.js"></script>
+
+</head>
+<body>
+<div id="includedContentMenu"></div>
+<div class="container" id="container">
+    <div class="row" style="padding-top:100px">
+        <div class="text-center message">Merci <span class="blanc">XXX,</span> tu m'as appris à reconnaître<span class="blanc"> XX objets</span> ?</div>
+    </div>
+
+    <div class="row text-center" style="padding-top:100px">
+
+        <div class="row text-center">
+            <div id="flecheGauche" class="col-lg-1 text-center">
+
+            </div>
+            <div class="col-lg-10">
+                <div class="owl-carousel">
+                    <div class="item"><h4>objet 1</h4></div>
+                    <div class="item"><h4>Lorem Ipsum</h4></div>
+                    <div class="item"><h4>objet 3</h4></div>
+                    <div class="item"><h4>Lorem</h4></div>
+                    <div class="item"><h4>objet 5</h4></div>
+                    <div class="item"><h4>Lorem Ipsum</h4></div>
+                    <div class="item"><h4>objet 7</h4></div>
+                    <div class="item"><h4>Lorem</h4></div>
+                    <div class="item"><h4>objet 9</h4></div>
+                    <div class="item"><h4>Lorem Ipsum</h4></div>
+                    <div class="item"><h4>objet 11</h4></div>
+                    <div class="item"><h4>Lorem</h4></div>
+                </div>
+            </div>
+            <div id="flecheDroite" class="col-lg-1 text-center">
+
+            </div>
+        </div>
+
+    </div>
+
+    <div id="blocPetitsBoutons" class="row text-center" style="padding-top:100px">
+        <!--<div class="col-lg-offset-3 col-lg-3 btnDivPetit">-->
+        <!--<div> bla</div>-->
+        <!--<div> ta</div>-->
+        <!--</div>-->
+        <div class="col-lg-offset-4 col-lg-2 btnDivPetit" id="btnGaucheDiv">
+            <div class="row">
+                <div class="left">
+                    <img class="right" src="resources/imagesRoby/elementsGraphiques/roby_0008_bout-coeur-big.png"/>
+                </div>
+                <div class="right">
+                    <div>Je Peux</div>
+                    <div class="blanc ">reconnaître</div>
+                    <div>une image</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2 btnDivPetit" id="btnDroiteDiv">
+            <div class="row">
+                <div class="left">
+                    <img class="right" src="resources/imagesRoby/elementsGraphiques/roby_0007_bout-ampoule-big.png"/>
+                </div>
+                <div class="right">
+                    <div>Je Peux</div>
+                    <div class="blanc">apprendre</div>
+                    <div>un mot</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="robyCoinBasGauche">
+    <img src="resources/imagesRoby/elementsGraphiques/roby_0001_robot-diagonal.png" />
+</div>
+</body>
+</html>
+<script src="scripts/affichageMenu.js"></script>
+<script type="text/javascript" src="scripts/carousel.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('body').css('background-image', 'none');
+        $('body').css('background-color', '#425663');
+        setTimeout(function(){
+        /*var carousel = "<div class='row text-center' style='padding-top:100px'>"
+                +"<div class='row text-center'>"
+                +"<div id='flecheGauche' class='col-lg-1 text-center'>"
+                +"</div>"
+                +"<div class='col-lg-10'>"
+                +"<div id='oc' class='owl-carousel'>"
+                +"<div class='item'><h4>aaa</h4></div>"
+                +"<div class='item'><h4>bbb</h4></div>"
+                +"<div class='item'><h4>ccc</h4></div>"
+                +"<div class='item'><h4>ddd</h4></div>"
+                +"<div class='item'><h4>eee</h4></div>"
+                +"</div>"
+                +"</div>"
+                +"<div id='flecheDroite' class='col-lg-1 text-center'>"
+                +"</div>"
+                +"</div>"
+                +"</div>";
+        $('#container').append(carousel);*/
+            $('#container').load("blocs/carousel.html", function(){construireCarousel();});
+
+        }, 3000);
+    });
+</script>

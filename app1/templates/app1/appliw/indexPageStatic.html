@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Client</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <style>
+        .petit { height: 0%; width: 0%}
+        .normal {}
+        body
+        {
+            background-color: teal; /* Le fond de la page sera noir */
+        }
+    </style>
+    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script type="text/javascript">
+        var webSocket;
+        var etat = "zero";
+        var canvas;
+        var video;
+        var width = 320;
+        var height = 0;
+        var msg;
+        var lastKeyword;
+
+        if(!window.WebSocket) {
+            alert('Votre navigateur ne supporte pas les webSocket! \n Ca va beaucoup moins bien marcher...');
+        }
+
+        function connect() {
+            webSocket = new WebSocket("ws://localhost:8025/websockets/");
+            webSocket.onmessage = onMessage;
+            webSocket.onclose = onClose;
+        }
+
+        function onClose(){
+            console.log("Fin de connexion. \n Ca va être tout noir...");
+        }
+
+        // Le serveur envoie des données, on les traite ici
+        function onMessage(evt) {
+            var change = true;
+            var nouvelleImage;
+
+            switch (evt.data){ //event from server
+                case "apprentissage_terminé" : // fin traitement knime de récupérétion des images sur google
+                    nouvelleImage = "resources/imagesRoby/robySmile.png";
+                    etat = "camera";
+                    msg.text = "Voilà, j'ai terminé ! ";
+                    window.speechSynthesis.speak(msg);
+                    break;
+                case "pas_compris" :
+                    nouvelleImage = "resources/imagesRoby/robyBlase.png";
+                    msg.text = "Désolé, je n'ai pas compris...";
+                    window.speechSynthesis.speak(msg);
+                    break;
+                case "erreur" :
+                    nouvelleImage = "resources/imagesRoby/robyPerplexe.png";
+                    msg.text = "Mince, une erreur est survenue.";
+                    window.speechSynthesis.speak(msg);
+                    break;
+                case "image_reconnue" :
+                    nouvelleImage = "resources/imagesRoby/robySmile.png";
+                    msg.text = "Oui, je reconnais ça ! C'est une image de " + lastKeyword + " !";
+                    window.speechSynthesis.speak(msg);
+                    break;
+                case "image_non_reconnue" :
+                    nouvelleImage = "resources/imagesRoby/robyPerplexe.png";
+                    msg.text = "Je n'ai pas reconnu cet objet.";
+                    window.speechSynthesis.speak(msg);
+                    break;
+                default :
+                    change = false;
+                    break;
+            }
+
+            if (change){
+                document.getElementById("roby").src = nouvelleImage;
+            }
+            console.log(evt.data);
+
+        }
+
+        function bindEventToSendOrderByText() {
+            $('#hit').click(function() {
+                var text  = $('#term').val();
+                var json = {};
+                json.type = "texte";
+
+                var nouvelleImage;
+                var change = true;
+
+                var phrase= text.split(" ")
+
+                json.action = phrase[0];
+
+                switch (phrase[0]){
+                    case "apprendre" :
+                        nouvelleImage = "resources/imagesRoby/robyDodo.png";
+                        lastKeyword = phrase[1];
+                        json.keyword = phrase[1];
+                        msg.text = "Je vais apprendre à reconnaître des " + phrase[1];
+                        window.speechSynthesis.speak(msg);
+                        break;
+                    default :
+                        change = false;
+                        break;
+                }
+                if (change){
+                    document.getElementById("roby").src = nouvelleImage;
+                }
+
+                webSocket.send(JSON.stringify(json));
+
+            });
+        }
+
+        function initCamera() {
+            var streaming = false,
+                    cover        = document.querySelector('#cover'),
+                    photo        = document.querySelector('#photo'),
+                    startbutton  = document.querySelector('#startbutton');
+
+            video  = document.querySelector('#video'),
+                    canvas = document.querySelector('#canvas');
+
+            navigator.getMedia = ( navigator.getUserMedia ||
+            navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia ||
+            navigator.msGetUserMedia);
+
+            navigator.getMedia(
+                    {
+                        video: true,
+                        audio: false
+                    },
+                    function(stream) {
+                        if (navigator.mozGetUserMedia) {
+                            video.mozSrcObject = stream;
+                        } else {
+                            var vendorURL = window.URL || window.webkitURL;
+                            video.src = vendorURL.createObjectURL(stream);
+                        }
+                        video.play();
+                    },
+                    function(err) {
+                        console.log("An error occured! " + err);
+                    }
+            );
+
+            video.addEventListener('canplay', function(ev){
+                if (!streaming) {
+                    height = video.videoHeight / (video.videoWidth/width);
+                    video.setAttribute('width', width);
+                    video.setAttribute('height', height);
+                    canvas.setAttribute('width', width);
+                    canvas.setAttribute('height', height);
+                    streaming = true;
+                }
+            }, false);
+
+            startbutton.addEventListener('click', function(ev){
+                takepicture();
+                ev.preventDefault();
+            }, false);
+        }
+
+        function takepicture() {
+            // changer l'image du robot le temps du traitement
+            document.getElementById("roby").src= "resources/imagesRoby/robyDodo.png";
+            console.log(canvas);
+            canvas.width = width;
+            canvas.height = height;
+            canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+
+            var dataURL64 = canvas.toDataURL();
+            var imageBase64= dataURL64.replace(/^data:image\/(png|jpg);base64,/, "");
+
+            var jsonImage = {};
+            jsonImage.action = "recevoirImage";
+            jsonImage.image = imageBase64;
+
+            msg.text = "Voyons voir si je reconnais cet objet !";
+            window.speechSynthesis.speak(msg);
+
+            webSocket.send(JSON.stringify(jsonImage));
+        }
+
+        function bindEventToSendOrderBySpeech() {
+            var recognition = new webkitSpeechRecognition();
+            recognition.lang = "fr-FR";
+            recognition.continuous = true;
+            recognition.interimResults = true;
+
+            $('#startRecognition').click(function (e) {
+                e.preventDefault();
+                $('#startRecognition').attr('disabled', 'disabled');
+                recognition.start();
+            });
+
+            $('#stopRecognition').click(function (e) {
+                e.preventDefault();
+                recognition.stop();
+                $('#startRecognition').removeAttr('disabled')
+            });
+
+            recognition.onresult = function (event) {
+                //console.log(event);
+                var result = $('#vocalResult');
+                var transcript;
+                var fin=false;
+                result.text('');
+
+                for (var i = 0; i < event.results.length; i++) {
+                    var speechrecognitionResult = event.results[i];
+                    transcript = speechrecognitionResult[0].transcript;
+                    if (event.results[i].isFinal) {
+                        result.text(transcript);
+                        //recognition.stop();
+
+                        var json = {};
+                        var nouvelleImage;
+                        var phrase = transcript.split(" ");
+                        recognition.stop();
+                        $('#startRecognition').removeAttr('disabled')
+
+                        for (var j = 0; j < phrase.length; j++) {
+                            if (phrase[j] == "apprendre") {
+                                nouvelleImage = "resources/imagesRoby/robyDodo.png";
+                                json.action = "apprendre";
+                                json.keyword = phrase[j + 1];
+                                lastKeyword = phrase[j+1];
+                                document.getElementById("roby").src = nouvelleImage;
+                                msg.text = "Je vais apprendre à reconnaître des " + phrase[1];
+                                window.speechSynthesis.speak(msg);
+                                webSocket.send(JSON.stringify(json));
+                            }
+
+                            if (phrase[j] == "photo" || phrase[j] == "photos"){
+                                takepicture();
+                            }
+
+                        }
+
+                        break;
+                    } else {
+                        result.text($('#vocalResult').text() + transcript);
+                    }
+                }
+                console.log("Fin de la boucle for");
+            }
+        }
+
+        function startSpeechSynthesis(){
+            msg = new SpeechSynthesisUtterance();//('Hello World');
+
+            var voices = window.speechSynthesis.getVoices();
+            msg.voice = voices[10]; // Note: some voices don't support altering params
+            msg.voiceURI = 'native';
+            msg.volume = 1; // 0 to 1
+            msg.rate = 1; // 0.1 to 10
+            msg.pitch = 2; //0 to 2
+            msg.text = "Bonjour ! Que voulez vous que j'apprenne aujourd'hui ?";
+            msg.lang = 'fr-FR';
+
+            window.speechSynthesis.speak(msg);
+
+
+        }
+
+        /**
+         * Apparition progressive du petit robot depuis le fond de l'écran
+         */
+        function apparition(){
+            $( ".petit" ).switchClass( "petit", "normal", 2000 );
+        };
+
+        $(document).ready(function() {
+            // Connect websocket
+            window.addEventListener("load", connect(), false);
+
+            // Apparition de l'image du robot, initialisation de la webcam et de la reconnaissance vocale
+            apparition();
+            initCamera();
+            startSpeechSynthesis();
+
+            // Bind event
+            bindEventToSendOrderByText();
+            bindEventToSendOrderBySpeech();
+        });
+
+
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div id="imageRobot" class="col-lg-2 col-lg-offset-5">
+            <img id="roby" class="img-circle petit" src="resources/imagesRoby/robyNeutre.png" alt="roby"/>
+        </div>
+    </div>
+    <div class="row">
+        <button type="button" id="startRecognition" class="col-lg-offset-5 btn btn-primary"><span class="glyphicon glyphicon-headphones"></span> </button>
+        <button type="button" id="stopRecognition" class="col-lg-offset-2 btn btn-danger"><span class="glyphicon glyphicon-stop"></span> </button>
+    </div>
+    <div class="row">
+        <h2 id="vocalResult" class="col-lg-5 col-lg-offset-4">Resultat ici</h2>
+    </div>
+    <div class="row" id="search">
+        <input id="term" type="text" value="apprendre ..." class="input-medium col-md-offset-5"/>
+        <button id="hit" type="button" class="btn btn-primary">Search <span class="glyphicon glyphicon-search"></span></button>
+    </div>
+
+    <div class="row">
+        <video id="video" class="col-md-offset-3"></video>
+        <canvas id="canvas"></canvas>
+    </div>
+
+
+    <div class="row">
+        <button id="startbutton" class="col-lg-3 col-lg-offset-5 btn btn-primary"><span class="glyphicon glyphicon-camera"></span> Prendre une photo</button>
+    </div>
+
+
+
+</div>
+</body>
+</html>

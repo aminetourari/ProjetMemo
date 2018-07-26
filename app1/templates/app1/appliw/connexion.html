@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <!--<link rel="stylesheet" href="/resources/demos/style.css">-->
+    <link rel="stylesheet" href="styles/indexStyle.css">
+
+</head>
+<body>
+<div id="includedContentMenu"></div>
+<div class="container">
+    <div class="row text-center">
+        <div id="helloValty" class="text-center">
+            <img id="helloValtyImage" src="resources/imagesRoby/connecteToi.png" alt="helloValty" class="invisible"/>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div id="identifiant" class="col-lg-4 col-lg-offset-4">
+            <input type="text" class="form-control" placeholder="Ton identifiant">
+        </div>
+    </div>
+    <div class="row text-center">
+        <div id="fleche" class="col-lg-4 col-lg-offset-4">
+            <img id="fl" src="resources/imagesRoby/fleche_vers_le_bas.png" />
+        </div>
+    </div>
+    <div class="row text-center">
+        <div id="motdepasse" class="col-lg-4 col-lg-offset-4">
+            <input type="password" class="form-control" placeholder="Ton mot de passe">
+        </div>
+    </div>
+    <div class="row text-center">
+        <div id="btnconnection" class="col-lg-4 col-lg-offset-4">
+            <button id="startbutton" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-off"></span> Connexion</button>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div id="imageRobott" class="col-lg-2 col-lg-offset-5">
+            <img id="robyy" src="resources/imagesRoby/robyNeutre.png" alt="roby"/>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div id="ombreRobot">
+            <img id="ombre" src="resources/imagesRoby/ombre.png" alt="ombre"/>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div id='nouveauCompte' class='col-lg-12'>
+            <span>Je veux créer un  compte</span>
+            <button id='btnNouveauCompte'><img src='resources/imagesRoby/elementsGraphiques/roby_0010_fleche-bleu-droite.png'></button>
+        </div>
+    </div>
+</div>
+<script src="scripts/affichageMenu.js"></script>
+<script>
+//    /**
+//     * Déplacement du robot vers le bas
+//     */
+//    function descendreRobot(){
+//        console.log("aaa");
+//        $( "#robotEtOmbre" ).animate({
+//            bottom: "-=300"
+//        }, 3000, afficherChampUser());
+//    };
+//
+//    function afficherChampUser(){
+//
+//    };
+//
+//    // Au chargement de la page
+//    $(function() {
+//        // déplacer le robot après 8 secondes (le robot et son ombre son revenu à leur position de départ)
+//        setTimeout(function() {
+//            document.getElementById("helloValtyImage").src = "resources/imagesRoby/connecteToi.png";
+//            descendreRobot();
+//        }, 8000);
+//
+//    });
+</script>
+</body>
+</html>
+
+

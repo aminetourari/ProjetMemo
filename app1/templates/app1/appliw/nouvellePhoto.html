@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>jQuery UI Effects - Show Demo</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="styles/indexStyle.css">
+
+</head>
+<body class="fondSombre">
+<div id="includedContentMenu"></div>
+<div class="container containerSombre" id="container">
+    <!--<div>-->
+    <!--<img src="resources/imagesRoby/elementsGraphiques/roby_0001_fond-arc-haut.png"/>-->
+    <!--</div>-->
+    <div class="row" style="padding-top:100px">
+        <div id="message" class="col-lg-12 text-center message">Que puis-je faire pour toi <span class="blanc">XXX</span> ?</div>
+    </div>
+    <div id="lignePrincipale" class="row text-center" style="padding-top:100px">
+        <div class="col-lg-4 btnInitGauche btnDiv" id="btnGaucheDiv">
+            <img src="static/app1/resources/imagesRoby/elementsGraphiques/roby_0008_bout-coeur-big.png"/>
+            <div class="message">Je Peux</div>
+            <div class="blanc message">reconnaître</div>
+            <div class="message">une image</div>
+        </div>
+        <div id="bordRobot" class="col-lg-4">
+            <div id="imageRobott" >
+                <img style="position: absolute; z-index: 1;" id="robyCorps" src="static/app1/resources/imagesRoby/morceauxDeRoby/roby_0035_robot.png" alt="roby"/>
+                <img style="z-index: 2" id="robyOeilGauche" src="static/app1/resources/imagesRoby/morceauxDeRoby/roby_0033_oeil-gauche.png" alt="roby"/>
+                <img style="z-index: 3;" id="robyOeilDroit" src="static/app1/resources/imagesRoby/morceauxDeRoby/roby_0034_oeil2-droit.png" alt="roby"/>
+                <img style="z-index: 4;" id="robyIrisGauche" src="static/app1/resources/imagesRoby/morceauxDeRoby/roby_0032_pupille1-gauche.png" alt="roby"/>
+                <img style="z-index: 5;" id="robyIrisDroit" src="static/app1/resources/imagesRoby/morceauxDeRoby/roby_0031_pupille-droite.png" alt="roby"/>
+                <img style="z-index: 6;" id="robyBouche" src="static/app1/resources/imagesRoby/morceauxDeRoby/roby_0029_sourire1.png" alt="roby"/>
+            </div>
+            <div id="ombreRobot">
+                <img style="position: relative; z-index: 1;" id="ombre" src="static/app1/resources/imagesRoby/morceauxDeRoby/roby_0030_ombre.png" alt="ombre"/>
+            </div>
+        </div>
+        <div class="col-lg-4 btnInitDroite btnDiv" id="btnDroiteDiv">
+            <img src="static/app1/resources/imagesRoby/elementsGraphiques/roby_0007_bout-ampoule-big.png"/>
+            <div class="message">Je Peux</div>
+            <div class="blanc message">apprendre</div>
+            <div class="message">un mot</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script src="static/app1/scripts/affichageMenu.js"></script>
+<script src="static/app1/scripts/levitationRobot.js"></script>
+<script src="static/app1/scripts/afficherPhoto.js"></script>
